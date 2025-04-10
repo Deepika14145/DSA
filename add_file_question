@@ -1,0 +1,19 @@
+class Solution {
+public:
+    long long solve(vector<vector<int>>& q, int i, vector<long long>& dp) {
+        int n = q.size();
+        if (i >= n) return 0;  // base case
+        if (dp[i] != -1) return dp[i];  // already computed
+
+        long long take = q[i][0] + solve(q, i + q[i][1] + 1, dp); // solve and skip
+        long long skip = solve(q, i + 1, dp); // just skip
+
+        return dp[i] = max(take, skip); // store and return best choice
+    }
+
+    long long mostPoints(vector<vector<int>>& questions) {
+        int n = questions.size();
+        vector<long long> dp(n, -1); // memo table
+        return solve(questions, 0, dp); // start from question 0
+    }
+};
