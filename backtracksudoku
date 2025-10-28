@@ -1,0 +1,150 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        // 3 helper arrays to track used numbers
+        bool row[9][9] = {false};
+        bool col[9][9] = {false};
+        bool box[9][9] = {false};
+
+        // Fill helper arrays based on initial board
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    int num = board[i][j] - '1'; // convert '1'-'9' to 0-8
+                    row[i][num] = col[j][num] = box[(i/3)*3 + j/3][num] = true;
+                }
+            }
+        }
+
+        solve(board, row, col, box);
+    }
+
+private:
+    bool solve(vector<vector<char>>& board, bool row[9][9], bool col[9][9], bool box[9][9]) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    for (int num = 0; num < 9; num++) {
+                        int boxIndex = (i/3)*3 + j/3;
+                        if (!row[i][num] && !col[j][num] && !box[boxIndex][num]) {
+                            // place the number
+                            board[i][j] = num + '1';
+                            row[i][num] = col[j][num] = box[boxIndex][num] = true;
+
+                            if (solve(board, row, col, box)) return true;
+
+                            // backtrack
+                            board[i][j] = '.';
+                            row[i][num] = col[j][num] = box[boxIndex][num] = false;
+                        }
+                    }
+                    return false; // if no number fits here
+                }
+            }
+        }
+        return true; // all cells filled correctly
+    }
+};
+
+int main() {
+    vector<vector<char>> board = {
+        {'5','3','.','.','7','.','.','.','.'},
+        {'6','.','.','1','9','5','.','.','.'},
+        {'.','9','8','.','.','.','.','6','.'},
+        {'8','.','.','.','6','.','.','.','3'},
+        {'4','.','.','8','.','3','.','.','1'},
+        {'7','.','.','.','2','.','.','.','6'},
+        {'.','6','.','.','.','.','2','8','.'},
+        {'.','.','.','4','1','9','.','.','5'},
+        {'.','.','.','.','8','.','.','7','9'}
+    };
+
+    Solution().solveSudoku(board);
+
+    for (auto& row : board) {
+        for (auto c : row) cout << c << " ";
+        cout << endl;
+    }
+
+    return 0;
+}
+
+
+
+my approach: 
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        // 3 helper arrays to track used numbers
+        bool row[9][9] = {false};
+        bool col[9][9] = {false};
+        bool box[9][9] = {false};
+
+        // Fill helper arrays based on initial board
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    int num = board[i][j] - '1'; // convert '1'-'9' to 0-8
+                    row[i][num] = col[j][num] = box[(i/3)*3 + j/3][num] = true;
+                }
+            }
+        }
+
+        solve(board, row, col, box);
+    }
+
+private:
+    bool solve(vector<vector<char>>& board, bool row[9][9], bool col[9][9], bool box[9][9]) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    for (int num = 0; num < 9; num++) {
+                        int boxIndex = (i/3)*3 + j/3;
+                        if (!row[i][num] && !col[j][num] && !box[boxIndex][num]) {
+                            // place the number
+                            board[i][j] = num + '1';
+                            row[i][num] = col[j][num] = box[boxIndex][num] = true;
+
+                            if (solve(board, row, col, box)) return true;
+
+                            // backtrack
+                            board[i][j] = '.';
+                            row[i][num] = col[j][num] = box[boxIndex][num] = false;
+                        }
+                    }
+                    return false; // if no number fits here
+                }
+            }
+        }
+        return true; // all cells filled correctly
+    }
+};
+
+int main() {
+    vector<vector<char>> board = {
+        {'5','3','.','.','7','.','.','.','.'},
+        {'6','.','.','1','9','5','.','.','.'},
+        {'.','9','8','.','.','.','.','6','.'},
+        {'8','.','.','.','6','.','.','.','3'},
+        {'4','.','.','8','.','3','.','.','1'},
+        {'7','.','.','.','2','.','.','.','6'},
+        {'.','6','.','.','.','.','2','8','.'},
+        {'.','.','.','4','1','9','.','.','5'},
+        {'.','.','.','.','8','.','.','7','9'}
+    };
+
+    Solution().solveSudoku(board);
+
+    for (auto& row : board) {
+        for (auto c : row) cout << c << " ";
+        cout << endl;
+    }
+
+    return 0;
+}
