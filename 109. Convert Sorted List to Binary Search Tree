@@ -1,0 +1,90 @@
+109. Convert Sorted List to Binary Search Tree
+Solved
+Medium
+Topics
+premium lock icon
+Companies
+Given the head of a singly linked list where elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+
+ 
+
+Example 1:
+
+
+Input: head = [-10,-3,0,5,9]
+Output: [0,-3,9,-10,null,5]
+Explanation: One possible answer is [0,-3,9,-10,null,5], which represents the shown height balanced BST.
+Example 2:
+
+Input: head = []
+Output: []
+ 
+
+Constraints:
+
+The number of nodes in head is in the range [0, 2 * 104].
+-105 <= Node.val <= 105
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* sortedListToBST(ListNode* head) {
+       int n = getLength(head);
+       current = head;
+       return buildBST(0, n-1); 
+    }
+
+private: 
+    ListNode* current;
+
+    int getLength(ListNode* head){
+        int len = 0;
+        while(head){
+            ++len;
+            head = head->next;
+        }
+        return len;
+    }
+
+    //building bst
+    TreeNode* buildBST(int l, int r){
+        if(l > r) return nullptr;
+
+        int mid = l + (r-l)/2;
+
+        //build left subtree
+        TreeNode* leftSubtree = buildBST(l, mid-1);
+
+        //current list node becomes root
+        TreeNode* root = new TreeNode(current->val);
+        root->left = leftSubtree;          //used to represent left sub tree
+
+        //move to next list node
+        current = current->next;
+
+        //build right subtree
+        root->right = buildBST(mid + 1, r);
+
+        return root;
+    }
+};
