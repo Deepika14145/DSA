@@ -1,0 +1,244 @@
+Let us do this **slowly and visually**, with **numbers you can see**, not formulas.
+
+---
+
+## Two rectangles
+
+### Rectangle A
+
+Bottom-left = `(1, 1)`
+Top-right   = `(6, 5)`
+
+So it covers:
+
+* x from **1 to 6**
+* y from **1 to 5**
+
+---
+
+### Rectangle B
+
+Bottom-left = `(4, 3)`
+Top-right   = `(8, 7)`
+
+So it covers:
+
+* x from **4 to 8**
+* y from **3 to 7**
+
+---
+
+## Step 1: Overlap on X-axis (width)
+
+Think of just a number line.
+
+```
+A: 1 ----------- 6
+B:       4 ----------- 8
+```
+
+### Where does overlap start?
+
+* A starts at 1
+* B starts at 4
+  Overlap must start at **the later one → 4**
+
+```
+max(1, 4) = 4
+```
+
+### Where does overlap end?
+
+* A ends at 6
+* B ends at 8
+  Overlap must end at **the earlier one → 6**
+
+```
+min(6, 8) = 6
+```
+
+### Overlapping width
+
+```
+width = 6 - 4 = 2
+```
+
+---
+
+## Step 2: Overlap on Y-axis (height)
+
+Now vertical direction.
+
+```
+A: 1 -------- 5
+B:      3 -------- 7
+```
+
+### Overlap start
+
+```
+max(1, 3) = 3
+```
+
+### Overlap end
+
+```
+min(5, 7) = 5
+```
+
+### Overlapping height
+
+```
+height = 5 - 3 = 2
+```
+
+---
+
+## Step 3: Intersection rectangle
+
+The common region is:
+
+* Bottom-left = `(4, 3)`
+* Top-right   = `(6, 5)`
+
+Size:
+
+* Width = 2
+* Height = 2
+
+So intersection looks like a **2 × 2 square**.
+
+---
+
+## Code connection
+
+Now the code should feel obvious:
+
+```cpp
+width = min(6, 8) - max(1, 4);   // 6 - 4 = 2
+height = min(5, 7) - max(1, 3); // 5 - 3 = 2
+```
+
+---
+
+## What if rectangles do NOT overlap?
+
+Rectangle C:
+
+* `(1,1)` to `(3,3)`
+  Rectangle D:
+* `(4,4)` to `(6,6)`
+
+```
+width = min(3,6) - max(1,4) = 3 - 4 = -1
+```
+
+Negative means **no overlap**, so we ignore it.
+
+---
+
+## Final mental model
+
+* **max(lefts)** → where overlap starts
+* **min(rights)** → where overlap ends
+* subtract to get size
+* negative or zero → no overlap
+
+Once this clicks, you will recognize this pattern everywhere:
+interval problems, rectangles, scheduling, range queries, all of it.
+
+
+3047. Find the Largest Area of Square Inside Two Rectangles
+Solved
+Medium
+Topics
+premium lock icon
+Companies
+Hint
+There exist n rectangles in a 2D plane with edges parallel to the x and y axis. You are given two 2D integer arrays bottomLeft and topRight where bottomLeft[i] = [a_i, b_i] and topRight[i] = [c_i, d_i] represent the bottom-left and top-right coordinates of the ith rectangle, respectively.
+
+You need to find the maximum area of a square that can fit inside the intersecting region of at least two rectangles. Return 0 if such a square does not exist.
+
+ 
+
+Example 1:
+
+
+Input: bottomLeft = [[1,1],[2,2],[3,1]], topRight = [[3,3],[4,4],[6,6]]
+
+Output: 1
+
+Explanation:
+
+A square with side length 1 can fit inside either the intersecting region of rectangles 0 and 1 or the intersecting region of rectangles 1 and 2. Hence the maximum area is 1. It can be shown that a square with a greater side length can not fit inside any intersecting region of two rectangles.
+
+Example 2:
+
+
+Input: bottomLeft = [[1,1],[1,3],[1,5]], topRight = [[5,5],[5,7],[5,9]]
+
+Output: 4
+
+Explanation:
+
+A square with side length 2 can fit inside either the intersecting region of rectangles 0 and 1 or the intersecting region of rectangles 1 and 2. Hence the maximum area is 2 * 2 = 4. It can be shown that a square with a greater side length can not fit inside any intersecting region of two rectangles.
+
+Example 3:
+
+  
+Input: bottomLeft = [[1,1],[2,2],[1,2]], topRight = [[3,3],[4,4],[3,4]]
+
+Output: 1
+
+Explanation:
+
+A square with side length 1 can fit inside the intersecting region of any two rectangles. Also, no larger square can, so the maximum area is 1. Note that the region can be formed by the intersection of more than 2 rectangles.
+
+Example 4:
+
+  
+Input: bottomLeft = [[1,1],[3,3],[3,1]], topRight = [[2,2],[4,4],[4,2]]
+
+Output: 0
+
+Explanation:
+
+No pair of rectangles intersect, hence, the answer is 0.
+
+ 
+
+Constraints:
+
+n == bottomLeft.length == topRight.length
+2 <= n <= 103
+bottomLeft[i].length == topRight[i].length == 2
+1 <= bottomLeft[i][0], bottomLeft[i][1] <= 107
+1 <= topRight[i][0], topRight[i][1] <= 107
+bottomLeft[i][0] < topRight[i][0]
+bottomLeft[i][1] < topRight[i][1]
+
+class Solution {
+public:
+    long long largestSquareArea(vector<vector<int>>& bottomLeft, vector<vector<int>>& topRight) {
+        long long maxArea = 0;
+        int n = bottomLeft.size();
+
+        for(int i = 0; i<n; i++){
+            for(int j = i + 1; j<n; j++){
+
+                //intersection width
+                int width = min(topRight[i][0], topRight[j][0]) - max(bottomLeft[i][0], bottomLeft[j][0]);
+
+                //intersection height
+                int height = min(topRight[i][1], topRight[j][1]) - max(bottomLeft[i][1], bottomLeft[j][1]);
+
+                if(width > 0 && height > 0){
+                    int side = min(width, height);
+                    long long area = 1LL * side * side;
+                    maxArea = max(maxArea, area);
+                }
+            }
+        }
+        return maxArea;
+    }
+};
