@@ -13,7 +13,11 @@ Return the minimum cost to convert the string source to the string target using 
 
 Note that there may exist indices i, j such that original[j] == original[i] and changed[j] == changed[i].
 
- 
+ Nodes = 26 characters
+
+Floyd–Warshall = 26³ ≈ 17,576 operations
+
+String traversal = O(n) where n ≤ 10⁵
 
 Example 1:
 
