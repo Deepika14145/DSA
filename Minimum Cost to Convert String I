@@ -1,0 +1,57 @@
+class Solution {
+public:
+    long long minimumCost(string source, string target,
+                          vector<char>& original,
+                          vector<char>& changed,
+                          vector<int>& cost) {
+
+        const long long INF = 1e18;
+
+        // build graph
+        vector<vector<pair<int,int>>> graph(26);
+        for (int i = 0; i < original.size(); i++) {
+            int u = original[i] - 'a';
+            int v = changed[i] - 'a';
+            graph[u].push_back({v, cost[i]});
+        }
+
+        vector<vector<long long>> dist(26, vector<long long>(26, INF));
+
+        // run dijkstra from each character in source
+        for (char c : source) {
+            int src = c - 'a';
+            if (dist[src][src] != INF) continue;
+
+            priority_queue<pair<long long,int>,
+                vector<pair<long long,int>>,
+                greater<>> pq;
+
+            dist[src][src] = 0;
+            pq.push({0, src});
+
+            while (!pq.empty()) {
+                auto [d, u] = pq.top();
+                pq.pop();
+                if (d > dist[src][u]) continue;
+
+                for (auto [v, w] : graph[u]) {
+                    if (dist[src][v] > d + w) {
+                        dist[src][v] = d + w;
+                        pq.push({dist[src][v], v});
+                    }
+                }
+            }
+        }
+
+        long long ans = 0;
+        for (int i = 0; i < source.size(); i++) {
+            int s = source[i] - 'a';
+            int t = target[i] - 'a';
+
+            if (dist[s][t] == INF) return -1;
+            ans += dist[s][t];
+        }
+
+        return ans;
+    }
+};
