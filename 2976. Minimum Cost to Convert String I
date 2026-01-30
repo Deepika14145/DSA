@@ -49,6 +49,8 @@ source, target consist of lowercase English letters.
 1 <= cost.length == original.length == changed.length <= 2000
 original[i], changed[i] are lowercase English letters.
 1 <= cost[i] <= 106
+original[i] != changed[i]
+
 
 class Solution {
 public:
@@ -92,4 +94,3 @@ public:
         return ans;
     }
 };
-original[i] != changed[i]
