@@ -1,0 +1,340 @@
+| Approach      | Main idea                  |
+| ------------- | -------------------------- |
+| Buckets       | Extract + rebuild          |
+| Two pointers  | In-place category reversal |
+| Index mapping | Explicit position control  |
+| Stacks        | LIFO reversal              |
+| Permutation   | Index-to-index remapping   |
+
+
+
+3823. Reverse Letters Then Special Characters in a String
+Solved
+Easy
+premium lock icon
+Companies
+Hint
+You are given a string s consisting of lowercase English letters and special characters.
+
+Your task is to perform these in order:
+
+Reverse the lowercase letters and place them back into the positions originally occupied by letters.
+Reverse the special characters and place them back into the positions originally occupied by special characters.
+Return the resulting string after performing the reversals.
+
+ Edge cases (already handled)
+
+Only letters → reversing letters does nothing
+
+Only special characters → whole string reversed
+
+Single character → unchanged
+
+Example 1:
+
+Input: s = ")ebc#da@f("
+
+Output: "(fad@cb#e)"
+
+Explanation:
+
+The letters in the string are ['e', 'b', 'c', 'd', 'a', 'f']:
+Reversing them gives ['f', 'a', 'd', 'c', 'b', 'e']
+s becomes ")fad#cb@e("
+​​​​​​​The special characters in the string are [')', '#', '@', '(']:
+Reversing them gives ['(', '@', '#', ')']
+s becomes "(fad@cb#e)"
+Example 2:
+
+Input: s = "z"
+
+Output: "z"
+
+Explanation:
+
+The string contains only one letter, and reversing it does not change the string. There are no special characters.
+
+Example 3:
+
+Input: s = "!@#$%^&*()"
+
+Output: ")(*&^%$#@!"
+
+Explanation:
+
+The string contains no letters. The string contains all special characters, so reversing the special characters reverses the whole string.
+
+ 
+
+Constraints:
+
+1 <= s.length <= 100
+s consists only of lowercase English letters and the special characters in "!@#$%^&*()".
+
+Approach 1: 
+Step 1: Fill stacks
+
+Traverse the string once.
+
+If character is a letter → push onto letterStack
+
+Else → push onto specialStack
+
+Step 2: Rebuild the string
+
+Traverse the string again.
+
+If original char was a letter → replace it with letterStack.top() and pop
+
+Else → replace it with specialStack.top() and pop
+
+class Solution {
+public:
+    string reverseByType(string s) {
+        stack<char> letterSt, specialSt;
+
+        for(char c : s){
+            if(c>= 'a' && c<= 'z')
+                letterSt.push(c);
+            else
+                specialSt.push(c);
+        }
+
+        for(char &c: s){
+            if(c >= 'a' && c <= 'z'){
+                c = letterSt.top();
+                letterSt.pop();
+            }else{
+                c = specialSt.top();
+                specialSt.pop();
+            }
+        }
+        return s;
+    }
+};
+
+Approach 2: 
+Clean approach to solve it
+High-level approach
+
+Traverse the string
+
+Collect all letters in one array
+
+Collect all special characters in another array
+
+Reverse both arrays
+
+Traverse the string again
+
+If original char was a letter, take next from reversed letters
+
+Else take next from reversed specials
+
+Build and return the result
+Time: O(n)
+Space: O(n)
+
+class Solution {
+public:
+    string reverseLettersThenSpecial(string s) {
+        string letters, specials;
+
+        // Step 1: Separate characters
+        for (char c : s) {
+            if (c >= 'a' && c <= 'z')
+                letters.push_back(c);
+            else
+                specials.push_back(c);
+        }
+
+        // Step 2: Reverse both
+        reverse(letters.begin(), letters.end());
+        reverse(specials.begin(), specials.end());
+
+        // Step 3: Rebuild string
+        int l = 0, sp = 0;
+        for (char &c : s) {
+            if (c >= 'a' && c <= 'z')
+                c = letters[l++];
+            else
+                c = specials[sp++];
+        }
+
+        return s;
+    }
+};
+
+Approach 3: 
+class Solution {
+public:
+    string reverseLettersThenSpecial(string s) {
+        int n = s.size();
+
+        auto isLetter = [](char c) {
+            return c >= 'a' && c <= 'z';
+        };
+
+        // Pass 1: reverse letters
+        int i = 0, j = n - 1;
+        while (i < j) {
+            while (i < j && !isLetter(s[i])) i++;
+            while (i < j && !isLetter(s[j])) j--;
+            if (i < j) swap(s[i++], s[j--]);
+        }
+
+        // Pass 2: reverse special characters
+        i = 0; j = n - 1;
+        while (i < j) {
+            while (i < j && isLetter(s[i])) i++;
+            while (i < j && isLetter(s[j])) j--;
+            if (i < j) swap(s[i++], s[j--]);
+        }
+
+        return s;
+    }
+};
+
+| Aspect                 | Split & rebuild | Two-pointer in place      |
+| ---------------------- | --------------- | ------------------------- |
+| Extra space            | O(n)            | O(1)                      |
+| Clarity                | Very intuitive  | Slightly more algorithmic |
+| Speed                  | O(n)            | O(n)                      |
+| Interview friendliness | High            | Very high                 |
+
+
+Step-by-step logic
+Pass 1: Reverse only letters
+
+i starts at the left, j at the right
+
+Move i forward until it hits a letter
+
+Move j backward until it hits a letter
+
+Swap them
+
+Continue until i >= j
+
+Special characters are skipped automatically.
+
+Pass 2: Reverse only special characters
+
+Reset i = 0, j = n-1
+
+Move i forward until it hits a special character
+
+Move j backward until it hits a special character
+
+Swap them
+
+Now letters stay fixed, and specials get reversed.
+
+
+Approach 4: 
+Step 1: Collect indices
+
+Walk once through the string.
+
+letterPos → indices of lowercase letters
+
+specialPos → indices of special characters
+
+At the same time, also store the characters themselves.
+
+Step 2: Reverse the characters logically
+
+For letters: first letter index gets last letter character
+
+For specials: first special index gets last special character
+
+No physical reverse needed if you index from the end.
+
+Step 3: Write back into the string
+
+Assign characters back using the stored index positions.
+
+class Solution {
+public:
+    string reverseLettersThenSpecial(string s) {
+        vector<int> letterPos, specialPos;
+        vector<char> letters, specials;
+
+        // Step 1: collect positions and characters
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] >= 'a' && s[i] <= 'z') {
+                letterPos.push_back(i);
+                letters.push_back(s[i]);
+            } else {
+                specialPos.push_back(i);
+                specials.push_back(s[i]);
+            }
+        }
+
+        // Step 2: place letters in reverse order
+        for (int i = 0; i < letterPos.size(); i++) {
+            s[letterPos[i]] = letters[letters.size() - 1 - i];
+        }
+
+        // Step 3: place specials in reverse order
+        for (int i = 0; i < specialPos.size(); i++) {
+            s[specialPos[i]] = specials[specials.size() - 1 - i];
+        }
+
+        return s;
+    }
+};
+
+
+Approach 5: 
+Step 1: Collect positions
+
+Traverse s once and record:
+
+letterPos: indices where letters occur
+
+specialPos: indices where special characters occur
+
+Step 2: Build a mapping
+
+For letters:
+
+letterPos[i] should get the character from letterPos[k - 1 - i]
+
+For specials:
+
+specialPos[i] should get the character from specialPos[m - 1 - i]
+
+This defines a permutation of indices.
+
+Step 3: Apply the permutation
+
+Create a copy of the string and fill it according to the mapping.
+
+class Solution {
+public:
+    string reverseLettersThenSpecial(string s) {
+        vector<int> letterPos, specialPos;
+
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] >= 'a' && s[i] <= 'z')
+                letterPos.push_back(i);
+            else
+                specialPos.push_back(i);
+        }
+
+        string result = s;
+
+        // Apply letter permutation
+        for (int i = 0; i < letterPos.size(); i++) {
+            result[letterPos[i]] = s[letterPos[letterPos.size() - 1 - i]];
+        }
+
+        // Apply special character permutation
+        for (int i = 0; i < specialPos.size(); i++) {
+            result[specialPos[i]] = s[specialPos[specialPos.size() - 1 - i]];
+        }
+
+        return result;
+    }
+};
