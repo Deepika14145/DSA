@@ -1,0 +1,281 @@
+1235. Maximum Profit in Job Scheduling
+Solved
+Hard
+Topics
+premium lock icon
+Companies
+Hint
+We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
+
+You're given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
+
+If you choose a job that ends at time X you will be able to start another job that starts at time X.
+
+ 
+
+Example 1:
+
+
+
+Input: startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]
+Output: 120
+Explanation: The subset chosen is the first and fourth job. 
+Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.
+Example 2:
+
+
+
+Input: startTime = [1,2,3,4,6], endTime = [3,5,10,6,9], profit = [20,20,100,70,60]
+Output: 150
+Explanation: The subset chosen is the first, fourth and fifth job. 
+Profit obtained 150 = 20 + 70 + 60.
+Example 3:
+
+
+
+Input: startTime = [1,1,1], endTime = [2,3,4], profit = [5,6,4]
+Output: 6
+ 
+
+Constraints:
+
+1 <= startTime.length == endTime.length == profit.length <= 5 * 104
+1 <= startTime[i] < endTime[i] <= 109
+1 <= profit[i] <= 104
+
+Intuition
+This problem is based on the 0/1 Knapsack idea.
+
+For every job, we have only two choices:
+
+Take the job
+Do not take the job
+If we take a job, we add its profit and then move to the next job that does not overlap with it.
+If we do not take the job, we simply move to the next job.
+
+At each step, we choose the option that gives the maximum profit.
+
+Jobs are sorted so that we can quickly find the next non-overlapping job, and Dynamic Programming is used to store the best profit up to each job to avoid repeated work.
+
+Approach
+Combine the given startTime, endTime, and profit arrays into a single list of jobs, where each job is represented as
+(startTime, endTime, profit).
+
+Sort all jobs by their end time.
+This helps in deciding which jobs can be combined without overlapping.
+
+Create a DP array dp where
+dp[i] = maximum profit that can be obtained using jobs from index 0 to i
+
+Initialize the DP:
+
+dp[0] = profit of the first job
+For each job i from 1 to n-1:
+Not take the job:
+notTake = dp[i-1]
+Take the job:
+Add the current job’s profit
+Find the last job before i that does not overlap with the current job using binary search
+Add dp[last_non_overlapping_job] to the current profit (if such a job exists)
+Set:
+dp[i] = max(take, notTake)
+The final answer is stored in dp[n-1], which represents the maximum profit using all jobs.
+This approach ensures all valid job combinations are considered while avoiding overlaps and uses Dynamic Programming to efficiently compute the optimal result.
+
+Complexity
+Time complexity:
+O(nlogn)
+
+Space complexity:
+O(n)
+
+Code
+class Solution {
+public:
+    
+    int findLastJob(vector<vector<int>>& job, int i) {
+        int low = 0;
+        int high = i - 1;
+        int ans = -1;
+
+        while (low <= high){
+            int mid = low + (high - low) / 2;
+
+            if (job[mid][1] <= job[i][0]) {
+                ans = mid;        
+                low = mid + 1;    
+            } else {
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
+
+    int jobScheduling(vector<int>& start, vector<int>& end, vector<int>& profit) {
+
+        int n = start.size();
+
+        vector<vector<int>> job(n, vector<int>(3));
+        for (int i = 0; i < n; i++) {
+            job[i][0] = start[i];
+            job[i][1] = end[i];
+            job[i][2] = profit[i];
+        }
+
+        sort(job.begin(), job.end(),
+            [](vector<int>& a, vector<int>& b){
+                return a[1] < b[1];
+            });
+
+        vector<int> dp(n);
+        dp[0] = job[0][2];
+
+        for (int i = 1; i < n; i++){
+            int take = job[i][2];
+            int notTake = dp[i - 1];
+
+            int idx = findLastJob(job, i);
+            if (idx != -1){
+                take += dp[idx];
+            }
+
+            dp[i] = max(take, notTake);
+        }
+
+        return dp[n - 1];
+    }
+};
+
+// // class Solution {
+// // public:
+// //     int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
+// //         int n = startTime.size();
+// //         vector<vector<int>> jobs(n);
+
+// //         for(int i = 0; i<n; i++)
+// //             jobs[i] = {endTime[i], startTime[i], profit[i]};
+
+// //             //greedy order: sort by end time
+// //             sort(jobs.begin(), jobs.end());
+
+// //             vector<int> dp(n);
+// //             dp[0] = jobs[0][2];
+
+// //             for(int i = 1; i<n; i++){
+// //                 int currProfit = jobs[i][2];
+
+// //                 //binary search for last non-overlapping job
+// //                 int l = 0, r = i-1, idx = -1;
+// //                 while(l<=r){
+// //                     int mid= (l+r)/2;
+// //                     if(jobs[mid][0] <= jobs[i][1]){
+// //                         idx = mid;
+// //                         l=mid+1;
+// //                     }else{
+// //                         r = mid-1;
+// //                     }
+// //                 }
+// //                 if(idx != -1)
+// //                     currProfit += dp[idx];
+
+// //                 dp[i] = max(dp[i-1], currProfit);
+// //             }
+// //             return dp[n-1];
+// //         }
+    
+// // };
+// class Solution {
+// public:
+//     int jobScheduling(vector<int>& start, vector<int>& end, vector<int>& profit) {
+//         int n = start.size();
+
+//         // Each job: {end, start, profit}
+//         vector<vector<int>> jobs(n);
+//         for (int i = 0; i < n; i++)
+//             jobs[i] = {end[i], start[i], profit[i]};
+
+//         // Topological order of DAG
+//         sort(jobs.begin(), jobs.end());
+
+//         vector<int> dp(n);
+//         dp[0] = jobs[0][2];
+
+//         for (int i = 1; i < n; i++) {
+//             int currProfit = jobs[i][2];
+
+//             // Find last node that can reach i
+//             int l = 0, r = i - 1, idx = -1;
+//             while (l <= r) {
+//                 int mid = (l + r) / 2;
+//                 if (jobs[mid][0] <= jobs[i][1]) {
+//                     idx = mid;
+//                     l = mid + 1;
+//                 } else {
+//                     r = mid - 1;
+//                 }
+//             }
+
+//             if (idx != -1)
+//                 currProfit += dp[idx];
+
+//             // Longest path decision
+//             dp[i] = max(dp[i - 1], currProfit);
+//         }
+
+//         return dp[n - 1];
+//     }
+// };
+// //O(n log n)
+
+class Solution {
+public:
+    int jobScheduling(vector<int>& start, vector<int>& end, vector<int>& profit) {
+        int n = start.size();
+        vector<vector<int>> jobs(n);
+
+        for (int i = 0; i < n; i++)
+            jobs[i] = {end[i], start[i], profit[i]};
+
+        // Topological order of DAG
+        sort(jobs.begin(), jobs.end());
+
+        // dp[endTime] = max profit until that time
+        map<int, int> dp;
+        dp[0] = 0;
+
+        for (auto &job : jobs) {
+            int e = job[0];
+            int s = job[1];
+            int p = job[2];
+
+            // Find best profit before start time
+            auto it = dp.upper_bound(s);
+            int bestBefore = prev(it)->second;
+
+            int currProfit = bestBefore + p;
+
+            // If this path is better, update DAG state
+            if (currProfit > dp.rbegin()->second)
+                dp[e] = currProfit;
+        }
+
+        return dp.rbegin()->second;
+    }
+};
+
+// Sort jobs by end time (topological order)
+
+// Initialize:
+
+// dp[0] = 0
+
+
+// For each job (s, e, p):
+
+// Find best profit before s
+
+// New profit = best + p
+
+// If better than current best at e, update
+
+// Answer = max value in map
