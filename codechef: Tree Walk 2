@@ -1,0 +1,412 @@
+
+Tree Walk 2
+This is the easy version of the problem. The only difference between this version and the hard version is that here, vertices can be visited by the walk at most two times.
+
+You're given a tree (a simple connected acyclic graph) with 
+N
+N vertices.
+
+A walk in the tree is a sequence of vertices 
+(
+w
+1
+,
+w
+2
+,
+…
+,
+w
+k
+)
+(w 
+1
+​
+ ,w 
+2
+​
+ ,…,w 
+k
+​
+ ) such that there exists an edge in the tree between 
+w
+i
+w 
+i
+​
+  and 
+w
+i
++
+1
+w 
+i+1
+​
+  for each 
+1
+≤
+i
+<
+k
+1≤i<k.
+Note that a walk is allowed to have repeated vertices.
+
+The walk 
+(
+w
+1
+,
+w
+2
+,
+…
+,
+w
+k
+)
+(w 
+1
+​
+ ,w 
+2
+​
+ ,…,w 
+k
+​
+ ) is said to be valid if it satisfies the following properties:
+
+w
+1
+=
+1
+w 
+1
+​
+ =1 and 
+w
+k
+=
+N
+w 
+k
+​
+ =N, i.e. the walk starts at 
+1
+1 and ends at 
+N
+N.
+w
+i
+≠
+N
+w 
+i
+​
+ =N for each 
+1
+≤
+i
+<
+k
+1≤i<k, i.e. the walk never visits 
+N
+N except at the last step.
+Each vertex appears at most 
+twice
+twice in the walk.
+Formally, for each vertex 
+v
+v (
+1
+≤
+v
+≤
+N
+1≤v≤N), there are at most 
+two
+two indices 
+i
+i such that 
+w
+i
+=
+v
+w 
+i
+​
+ =v.
+Count the number of valid walks in the given tree.
+
+The answer can be large, so report it modulo 
+998244353
+998244353.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+Each test case consists of multiple lines of input.
+The first line of each test case contains a single integer 
+N
+N — the number of vertices in the tree.
+The next 
+N
+−
+1
+N−1 lines describe the edges. The 
+i
+i-th of these 
+N
+−
+1
+N−1 lines contains two space-separated integers 
+u
+i
+u 
+i
+​
+  and 
+v
+i
+v 
+i
+​
+ , denoting an edge between 
+u
+i
+u 
+i
+​
+  and 
+v
+i
+v 
+i
+​
+ .
+Output Format
+For each test case, output on a new line the answer: the number of good walks, modulo 
+998244353
+998244353.
+
+Constraints
+1
+≤
+T
+≤
+10
+5
+1≤T≤10 
+5
+ 
+2
+≤
+N
+≤
+2
+⋅
+10
+5
+2≤N≤2⋅10 
+5
+ 
+The input edges describe a tree on 
+{
+1
+,
+2
+,
+…
+,
+N
+}
+{1,2,…,N}.
+The sum of 
+N
+N over all test cases won't exceed 
+2
+⋅
+10
+5
+2⋅10 
+5
+ .
+Sample 1:
+Input
+Output
+5
+2
+1 2
+4
+2 4
+1 2
+4 3
+4
+1 2
+1 3
+1 4
+6
+1 4
+4 2
+2 6
+6 5
+2 3
+15
+11 3
+3 1
+15 10
+13 6
+6 5
+7 2
+9 5
+5 3
+8 6
+2 1
+12 3
+4 1
+10 4
+14 5
+1
+2
+3
+5
+25
+Explanation:
+Test case 
+1
+1: The only valid walk is 
+(
+1
+,
+2
+)
+(1,2).
+
+Test case 
+2
+2: There are two valid walks, namely:
+
+(
+1
+,
+2
+,
+4
+)
+(1,2,4)
+(
+1
+,
+2
+,
+1
+,
+2
+,
+4
+)
+(1,2,1,2,4)
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+const int MOD = 998244353;
+
+// Global variables to avoid passing them around in recursion
+vector<vector<int>> adj;
+vector<int> parent;
+vector<int> sz;
+
+// DFS to calculate subtree sizes and parent pointers (rooting at 1)
+void dfs(int u, int p) {
+    parent[u] = p;
+    sz[u] = 1;
+    for (int v : adj[u]) {
+        if (v != p) {
+            dfs(v, u);
+            sz[u] += sz[v];
+        }
+    }
+}
+
+void solve() {
+    int N;
+    if (!(cin >> N)) return;
+
+    // Reset/Initialize data structures
+    adj.assign(N + 1, vector<int>());
+    parent.assign(N + 1, 0);
+    sz.assign(N + 1, 0);
+
+    for (int i = 0; i < N - 1; ++i) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    // Edge case: N=1 is not possible per constraints (N>=2), 
+    // but logic holds generally.
+
+    // 1. Root the tree at vertex 1
+    dfs(1, 0);
+
+    // 2. Find the path from 1 to N
+    // We trace back from N to 1 using parent array
+    vector<int> path;
+    int curr = N;
+    while (curr != 0) {
+        path.push_back(curr);
+        curr = parent[curr];
+    }
+    // Reverse to get path 1 -> ... -> N
+    reverse(path.begin(), path.end());
+
+    // 3. Dynamic Programming along the path
+    long long free_state = 1;    // DP[i][0]: Arriving at node i fresh
+    long long blocked_state = 0; // DP[i][1]: Arriving at node i after a bounce from i-1
+
+    // Iterate through path nodes from 1 up to parent of N
+    // (We don't process N itself for detours as the walk ends immediately at N)
+    for (size_t i = 0; i < path.size() - 1; ++i) {
+        int u = path[i];
+        int next_u = path[i+1];
+        
+        // Calculate number of valid side detours at u.
+        // This is the size of the component at u excluding the branch towards N.
+        // Since we rooted at 1, next_u is a child of u.
+        long long ways_side = (sz[u] - sz[next_u]); 
+        
+        // Transitions
+        // 1. From Free State:
+        //    - Take a side detour (ways_side options) -> Next is Free
+        //    - Bounce forward (1 option) -> Next is Blocked
+        // 2. From Blocked State:
+        //    - Must proceed directly (1 option) -> Next is Free
+        
+        long long next_free = (free_state * ways_side + blocked_state) % MOD;
+        long long next_blocked = free_state; 
+        
+        free_state = next_free;
+        blocked_state = next_blocked;
+    }
+
+    cout << free_state << "\n";
+}
+
+int main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int T;
+    if (cin >> T) {
+        while (T--) {
+            solve();
+        }
+    }
+    return 0;
+}
