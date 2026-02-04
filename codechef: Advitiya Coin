@@ -1,0 +1,309 @@
+
+Advitiya Coin
+During Advitiya, the Coding Club launched a brand-new virtual stock called AdvitiyaCoin (ADC) to give participants a taste of real-world trading strategies.
+
+The price of AdvitiyaCoin changes throughout the day and is recorded in an array 
+P
+P of size 
+N
+N, where 
+P
+i
+P 
+i
+​
+  represents the price of the stock at time index 
+i
+i.
+
+A participant can perform multiple trades during the day, following the rules below.
+
+A valid trade is one of the following:
+Choose indices 
+i
+<
+j
+i<j and: buy the stock at index 
+i
+i and sell it at index 
+j
+j, or
+Choose indices 
+i
+<
+j
+i<j and: sell the stock at index 
+i
+i and buy it at index 
+j
+j.
+If a trade is made by choosing indices 
+i
+i and 
+j
+j, no other buy or sell operation should take place between indices 
+i
+i and 
+j
+j (endpoints included).
+Each trade incurs a fixed transaction cost 
+K
+K.
+The profit of a trade is defined as 
+profit
+=
+(
+sell price
+−
+buy price
+)
+−
+K
+profit=(sell price−buy price)−K.
+
+A trade is considered winning if its profit is strictly positive.
+
+You are given the array 
+P
+P of length 
+N
+N, denoting the prices of the stock at various time indices, as well as the transaction cost 
+K
+K.
+
+Compute the maximum number of winning trades that can be performed while following all the rules.
+Note that you do not need to maximize the overall profit of the trades: only the number of winning trades.
+
+Input Format
+The first line of input will contain a single integer 
+T
+T, denoting the number of test cases.
+Each test case consists of two lines of input.
+The first line contains two space separated integers 
+N
+N and 
+K
+K — the length of the array 
+P
+P and the transaction cost.
+The second line contains 
+N
+N space-separated integers 
+P
+1
+,
+…
+,
+P
+N
+P 
+1
+​
+ ,…,P 
+N
+​
+ .
+Output Format
+For each test case, print a single integer on a new line: the maximum number of winning trades that can be performed.
+Constraints
+1
+≤
+T
+≤
+10
+5
+1≤T≤10 
+5
+ 
+1
+≤
+N
+≤
+2
+⋅
+10
+5
+1≤N≤2⋅10 
+5
+ 
+1
+≤
+P
+i
+≤
+10
+9
+1≤P 
+i
+​
+ ≤10 
+9
+ 
+0
+≤
+K
+≤
+10
+9
+0≤K≤10 
+9
+ 
+The sum of 
+N
+N over all test cases does not exceed 
+2
+⋅
+10
+5
+2⋅10 
+5
+ .
+Sample 1:
+Input
+Output
+3
+5 1
+1 3 2 5 4
+4 2
+5 4 3 2
+3 0
+2 2 2
+2
+1
+0
+Explanation:
+Test case 
+1
+1: The maximum number of winning trades is 
+2
+2, attained as follows:
+
+Buy at index 
+1
+1, sell at index 
+2
+2.
+This yields a profit of 
+3
+−
+1
+−
+1
+=
+1
+>
+0
+3−1−1=1>0, so it is winning.
+Buy at index 
+3
+3, sell at index 
+5
+5.
+This yields a profit of 
+4
+−
+2
+−
+1
+=
+1
+>
+0
+4−2−1=1>0, so it is winning.
+Test case 
+2
+2: Only one winning trade is possible, for example by selling at index 
+1
+1 and buying at index 
+4
+4 (which is winning because it has a profit of 
+5
+−
+2
+−
+2
+=
+1
+>
+0
+5−2−2=1>0)
+
+It can be shown that it's impossible to have more than one winning trade while following all the given rules.
+
+Test case 
+3
+3: All prices are equal, so no profitable trade is possible. The answer is 
+0
+0.
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void solve() {
+    int N;
+    long long K;
+    
+    // Read N and K
+    if (!(cin >> N >> K)) return;
+
+    // Read price array P
+    vector<long long> P(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> P[i];
+    }
+
+    // If there is only 1 day, no trades are possible
+    if (N < 2) {
+        cout << 0 << "\n";
+        return;
+    }
+
+    long long ans = 0;
+    
+    // Initialize tracking variables with the first element
+    long long min_p = P[0];
+    long long max_p = P[0];
+
+    // Iterate starting from the second element
+    for (int i = 1; i < N; ++i) {
+        // Update the min and max seen in the current valid segment
+        min_p = min(min_p, P[i]);
+        max_p = max(max_p, P[i]);
+
+        // Check if the difference between current price and min/max exceeds K
+        // Condition 1: Buy at min_p, Sell at current P[i] (Profit > 0)
+        // Condition 2: Sell at max_p, Buy at current P[i] (Profit > 0)
+        if ((P[i] - min_p > K) || (max_p - P[i] > K)) {
+            ans++;
+
+            // Trade completed at index i.
+            // We must start a completely new segment from i + 1.
+            i++; 
+            
+            // If i is still within bounds after incrementing, reset trackers
+            if (i < N) {
+                min_p = P[i];
+                max_p = P[i];
+            }
+        }
+    }
+
+    cout << ans << "\n";
+}
+
+int main() {
+    // Fast I/O for performance
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int T;
+    if (cin >> T) {
+        while (T--) {
+            solve();
+        }
+    }
+    return 0;
+}
