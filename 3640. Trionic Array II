@@ -52,6 +52,19 @@ Constraints:
 -109 <= nums[i] <= 109
 It is guaranteed that at least one trionic subarray exists.
 
+// Approach: This problem asks us to find the maximum sum of a "rollercoaster" shaped subarray: it goes up, then down, then up again.This is a classic Dynamic Programming (State Machine) problem. Instead of trying to manage indices l, p, q, r directly (which would be too slow, $O(N^4)$ or $O(N^3)$), we iterate through the array once ($O(N)$) and track the "best possible sum" for each stage of the shape ending at the current index.The Three States (DP Arrays)We maintain three arrays (or variables) as we walk through nums[i]:inc[i] (Increasing): The maximum sum of a strictly increasing subarray ending at index i.dec[i]
+// (Up $\to$ Down): The maximum sum of a subarray that has gone up and then down, ending at index i.tri[i] (Up $\to$ Down $\to$ Up): The maximum sum of a full Trionic subarray (Up-Down-Up) ending at index i.Step-by-Step Transition LogicFor each number nums[i], we decide how it extends or starts these sequences.1. State 1: Strictly Increasing (inc)This is standard Kadane's algorithm logic, but restricted to increasing slopes.Condition: If nums[i] > nums[i-1], we can extend the previous increasing sequence.Logic: inc[i] = nums[i] + max(0, inc[i-1]). If the previous sum was negative, we restart the sequence at nums[i].2. State 2: Up $\to$ Down (dec)To be in this state, we must be on a downward slope (nums[i] < nums[i-1]). We can arrive here in two ways:Extend: We were already going down. We just add nums[i] to the previous dec[i-1].Transition (The Peak): We were going up until i-1, and now we drop to i. This makes i-1 the Peak ($p$).Constraint Check: The problem says l < p. This means the increasing part must have at least 2 elements. We check if nums[i-1] > nums[i-2]. If valid, we take the sum of that increasing part plus the current drop.3. State 3: Trionic / Up $\to$ Down $\to$ Up (tri)To be in this state, we must be on an upward slope (nums[i] > nums[i-1]). We can arrive here in two ways:Extend: We were already in the final increasing phase. Add nums[i] to tri[i-1].Transition (The Valley): We were going down until i-1, and now we rise to i. This makes i-1 the Valley ($q$).Constraint Check: The problem says p < q. This means the decreasing part must have at least 2 elements. If dec[i-1] exists (valid state), we simply transition by adding nums[i] to it.
+
+// | Aspect     | Peak Element (162) | Trionic Array II (3640)   |
+// | ---------- | ------------------ | ------------------------- |
+// | Pattern    | Single peak        | Up → Down → Up            |
+// | Scope      | Whole array        | Any subarray              |
+// | Output     | Index              | Maximum sum               |
+// | Strategy   | Binary search      | DP + prefix logic         |
+// | Difficulty | Medium             | Hard                      |
+// | Core idea  | Follow slope       | Track structured segments |
+
+
 #include <vector>
 #include <algorithm>
 #include <climits>
