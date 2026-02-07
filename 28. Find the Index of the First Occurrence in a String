@@ -26,6 +26,24 @@ Constraints:
 1 <= haystack.length, needle.length <= 104
 haystack and needle consist of only lowercase English characters.
 
+How to proceed
+
+Let n = haystack.length
+
+Let m = needle.length
+
+Try all possible starting positions in haystack:
+
+From index 0 to n - m
+
+For each position:
+
+Compare haystack[i + j] with needle[j]
+
+If all m characters match → return i
+
+If nothing matches → return -1
+
 class Solution {
 public:
     int strStr(string haystack, string needle) {
