@@ -1,0 +1,165 @@
+363. Max Sum of Rectangle No Larger Than K
+Solved
+Hard
+Topics
+premium lock icon
+Companies
+Given an m x n matrix matrix and an integer k, return the max sum of a rectangle in the matrix such that its sum is no larger than k.
+
+It is guaranteed that there will be a rectangle with a sum no larger than k.
+
+ 
+
+Example 1:
+
+
+Input: matrix = [[1,0,1],[0,-2,3]], k = 2
+Output: 2
+Explanation: Because the sum of the blue rectangle [[0, 1], [-2, 3]] is 2, and 2 is the max number no larger than k (k = 2).
+Example 2:
+
+Input: matrix = [[2,2,-1]], k = 3
+Output: 3
+ 
+
+Constraints:
+-100 <= matrix[i][j] <= 100
+-105 <= k <= 105
+ 
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 100
+
+class Solution {
+public:
+    int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int ans = INT_MIN;
+
+        // Fix left column
+        for (int left = 0; left < n; left++) {
+            vector<int> rowSum(m, 0);
+
+            // Fix right column
+            for (int right = left; right < n; right++) {
+                for (int i = 0; i < m; i++) {
+                    rowSum[i] += matrix[i][right];
+                }
+
+                // 1D max subarray sum <= k
+                set<int> prefixSet;
+                prefixSet.insert(0);
+
+                int prefix = 0;
+                for (int x : rowSum) {
+                    prefix += x;
+                    auto it = prefixSet.lower_bound(prefix - k);
+                    if (it != prefixSet.end()) {
+                        ans = max(ans, prefix - *it);
+                    }
+                    prefixSet.insert(prefix);
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+Follow up: What if the number of rows is much larger than the number of columns?
+
+
+What is being asked, in plain terms
+
+You are given a matrix.
+You must choose any rectangle (contiguous rows and columns).
+
+Goal:
+
+rectangle_sum ≤ k
+and as large as possible
+
+
+Not “exactly k”.
+Not “largest rectangle”.
+Largest sum that does not cross k.
+
+Brute force would try all rectangles. That is O(n⁴). That will time out and offend the runtime gods.
+
+Key insight (the mental unlock)
+
+Turn the 2D problem into many 1D problems.
+
+If you fix:
+
+a left column
+
+a right column
+
+Then the rectangle between those columns collapses into a 1D array of row sums.
+
+Now the problem becomes:
+
+Given an array, find the maximum subarray sum ≤ k
+
+That 1D version is a known hard problem and can be solved with prefix sums + ordered set.
+
+Step 1: Fix column boundaries
+
+Assume columns are numbered 0 → n-1.
+
+For each pair:
+
+left = 0 to n-1
+right = left to n-1
+
+
+Maintain an array:
+
+rowSum[i] = sum of matrix[i][left..right]
+
+
+Now any rectangle between these columns becomes a subarray in rowSum.
+
+Step 2: Solve the 1D problem
+
+Given rowSum, find:
+
+max(subarray sum ≤ k)
+
+Trick used here
+
+Use prefix sums.
+
+Let:
+
+prefix[j] = rowSum[0] + ... + rowSum[j]
+
+
+Subarray sum from i+1 to j is:
+
+prefix[j] - prefix[i]
+
+
+We want:
+
+prefix[j] - prefix[i] ≤ k
+→ prefix[i] ≥ prefix[j] - k
+
+
+So for each prefix[j], we need the smallest prefix ≥ (prefix[j] - k).
+
+That is exactly why we use a sorted set.
+
+Why a balanced BST (set)?
+
+Because for each prefix we need:
+
+insert prefix
+
+find lower_bound(prefix − k)
+
+Both in O(log n).
