@@ -1,0 +1,137 @@
+110. Balanced Binary Tree
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Given a binary tree, determine if it is height-balanced.
+
+ 
+
+Example 1:
+
+
+Input: root = [3,9,20,null,null,15,7]
+Output: true
+Example 2:
+
+
+Input: root = [1,2,2,3,3,null,null,4,4]
+Output: false
+Example 3:
+
+Input: root = []
+Output: true
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 5000].
+-10^4 <= Node.val <= 10^4
+
+What does “height-balanced” mean?
+
+A binary tree is height-balanced if for every node in the tree:
+
+|height(left subtree) − height(right subtree)| ≤ 1
+
+
+Two key points people often miss:
+
+This condition must hold at every node, not just the root.
+
+Height = number of levels from that node down to the deepest leaf.
+
+An empty tree is balanced by definition. Nothing to lean over.
+
+Visual intuition
+Example 1
+      3
+     / \
+    9  20
+       / \
+      15  7
+
+
+Left height = 1
+
+Right height = 2
+
+Difference = 1 → OK
+And all subtrees also satisfy the rule → balanced
+
+Example 2
+        1
+       / \
+      2   2
+     /
+    3
+   /
+  4
+
+
+At node 2 on the left:
+
+Left height = 3
+
+Right height = 0
+
+Difference = 3 → ❌
+
+One violation anywhere breaks the whole tree → not balanced
+
+Brute force idea (not ideal)
+
+For every node:
+
+Compute height of left subtree
+
+Compute height of right subtree
+
+Check difference
+
+This works but is O(n²) in worst case. Tall skinny trees suffer.
+
+We can do better.
+
+Optimized idea (this is the key insight)
+
+While computing height, also check balance.
+
+If a subtree is unbalanced, stop early.
+
+Return -1 as a signal: “this subtree is broken”.
+
+So each node is visited once → O(n) time.
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int height(TreeNode* root){
+        if(!root) return 0;
+
+        int left = height(root->left);
+        if(left == -1) return -1;
+
+        int right = height(root->right);
+        if(right== -1) return -1;
+
+        if(abs(left - right) > 1) return -1;
+
+        return 1 + max(left, right);
+    }
+
+    bool isBalanced(TreeNode* root) {
+        return height(root) != -1;
+    }
+};
