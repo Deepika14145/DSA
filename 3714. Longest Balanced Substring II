@@ -1,0 +1,188 @@
+
+Code
+Testcase
+Testcase
+Test Result
+3714. Longest Balanced Substring II
+Solved
+Medium
+Topics
+premium lock icon
+Companies
+Hint
+You are given a string s consisting only of the characters 'a', 'b', and 'c'.
+
+A substring of s is called balanced if all distinct characters in the substring appear the same number of times.
+
+Return the length of the longest balanced substring of s.
+
+ 
+
+Example 1:
+
+Input: s = "abbac"
+
+Output: 4
+
+Explanation:
+
+The longest balanced substring is "abba" because both distinct characters 'a' and 'b' each appear exactly 2 times.
+
+Example 2:
+
+Input: s = "aabcc"
+
+Output: 3
+
+Explanation:
+
+The longest balanced substring is "abc" because all distinct characters 'a', 'b' and 'c' each appear exactly 1 time.
+
+Example 3:
+
+Input: s = "aba"
+
+Output: 2
+
+Explanation:
+
+One of the longest balanced substrings is "ab" because both distinct characters 'a' and 'b' each appear exactly 1 time. Another longest balanced substring is "ba".
+
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s contains only the characters 'a', 'b', and 'c'.
+
+// Mental model for the optimal approach
+// Think of a sliding window:
+// Expand the right pointer
+// Maintain counts of a, b, c
+// Track:
+// How many distinct characters are present
+// Minimum non-zero count
+// Maximum count
+// If all non-zero counts are equal, the window is balanced
+// Update the answer
+// Otherwise, shrink from the left
+// Because there are only 3 characters, this bookkeeping is cheap.
+
+// class Solution {
+// public:
+//     int longestBalanced(string s) {
+//         int cnt[3] = {0, 0, 0};
+//         int left = 0, ans = 0;
+
+//         for(int right = 0; right <s.size(); right++){
+//             cnt[s[right] - 'a']++;
+
+//             //shrink window if unbalanced
+//             while(!isBalanced(cnt)){
+//                 cnt[s[left] - 'a']--;
+//                 left++;
+//             }
+
+//             ans = max(ans, right-left +1);
+//         }
+//         return ans;
+//     }
+
+//     bool isBalanced(int cnt[]){
+//         int mn = INT_MAX, mx = 0;
+//         for(int i = 0; i<3; i++){
+//             if(cnt[i] > 0){
+//                 mn = min(mn, cnt[i]);
+//                 mx = max(mx, cnt[i]);
+//             }
+//         }
+//         return mn == mx;
+//     }
+// };
+//fails for this test case "abbac"
+class Solution {
+public:
+    int longestBalanced(string s) {
+        int singleCharMax = longestSingleChar(s);
+
+        int twoCharMax = max({
+            longestTwoChar(s, 'a', 'b'),
+            longestTwoChar(s, 'b', 'c'),
+            longestTwoChar(s, 'a', 'c')
+        });
+
+        int threeCharMax = longestThreeChar(s);
+
+        return max({singleCharMax, twoCharMax, threeCharMax});
+    }
+
+private:
+    // Case 1: only one distinct character
+    int longestSingleChar(const string& s) {
+        int bestLength = 0;
+        for (int start = 0; start < s.size();) {
+            int end = start;
+            while (end < s.size() && s[end] == s[start]) end++;
+            bestLength = max(bestLength, end - start);
+            start = end;
+        }
+        return bestLength;
+    }
+
+    // Case 2: exactly two distinct characters
+    int longestTwoChar(const string& s, char ch1, char ch2) {
+        int bestLength = 0;
+        int n = s.size();
+        int index = 0;
+
+        while (index < n) {
+            while (index < n && s[index] != ch1 && s[index] != ch2)
+                index++;
+
+            unordered_map<int, int> firstSeen;
+            firstSeen[0] = index - 1;
+
+            int balance = 0;
+            while (index < n && (s[index] == ch1 || s[index] == ch2)) {
+                balance += (s[index] == ch1 ? 1 : -1);
+
+                if (firstSeen.count(balance))
+                    bestLength = max(bestLength, index - firstSeen[balance]);
+                else
+                    firstSeen[balance] = index;
+
+                index++;
+            }
+        }
+        return bestLength;
+    }
+
+    // Helper to encode two integers into one key
+    long long encodeKey(int d1, int d2) {
+        return ((long long)(d1 + 100000) << 20) | (d2 + 100000);
+    }
+
+    // Case 3: all three characters
+    int longestThreeChar(const string& s) {
+        unordered_map<long long, int> firstSeen;
+        firstSeen[encodeKey(0, 0)] = -1;
+
+        int count[3] = {0, 0, 0};
+        int bestLength = 0;
+
+        for (int i = 0; i < s.size(); i++) {
+            count[s[i] - 'a']++;
+
+            int diffAB = count[0] - count[1];
+            int diffBC = count[1] - count[2];
+
+            long long state = encodeKey(diffAB, diffBC);
+
+            if (firstSeen.count(state))
+                bestLength = max(bestLength, i - firstSeen[state]);
+            else
+                firstSeen[state] = i;
+        }
+        return bestLength;
+    }
+};
