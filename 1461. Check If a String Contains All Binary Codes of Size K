@@ -1,0 +1,113 @@
+1461. Check If a String Contains All Binary Codes of Size K
+Solved
+Medium
+Topics
+premium lock icon
+Companies
+Hint
+Given a binary string s and an integer k, return true if every binary code of length k is a substring of s. Otherwise, return false.
+
+ 
+
+Example 1:
+
+Input: s = "00110110", k = 2
+Output: true
+Explanation: The binary codes of length 2 are "00", "01", "10" and "11". They can be all found as substrings at indices 0, 1, 3 and 2 respectively.
+Example 2:
+
+Input: s = "0110", k = 1
+Output: true
+Explanation: The binary codes of length 1 are "0" and "1", it is clear that both exist as a substring. 
+Example 3:
+
+Input: s = "0110", k = 2
+Output: false
+Explanation: The binary code "00" is of length 2 and does not exist in the array.
+ 
+
+Constraints:
+
+1 <= s.length <= 5 * 105
+s[i] is either '0' or '1'.
+1 <= k <= 20
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class Solution {
+// public:
+//     bool hasAllCodes(string s, int k) {
+        // int n = s.size();
+        // if (n < k) return false;
+
+        // int total = 1 << k;  // 2^k
+        // vector<bool> seen(total, false);
+        // int count = 0;
+        
+        // int mask = 0;
+        
+        // // Build first window
+        // for (int i = 0; i < k; i++) {
+        //     mask = (mask << 1) | (s[i] - '0');
+        // }
+        // seen[mask] = true;
+        // count++;
+
+        // int allOnes = total - 1;  // to keep only last k bits
+        
+        // // Slide window
+        // for (int i = k; i < n; i++) {
+        //     mask = ((mask << 1) & allOnes) | (s[i] - '0');
+            
+        //     if (!seen[mask]) {
+        //         seen[mask] = true;
+        //         count++;
+        //         if (count == total) return true;  // early exit
+        //     }
+        // }
+
+        // return count == total;
+    
+
+    //APPROACH 2
+//        unordered_set<string> st;
+
+//        for(int i = 0; i + k <= s.size(); i++){
+//             st.insert(s.substr(i,k));
+//        }
+//        return st.size() == (int)pow(2,k);
+    
+//     }
+// };
+
+// class Solution {
+// public:
+//     bool hasAllCodes(string s, int k) {
+//         unordered_set<string> seen;
+//         int target = 1 << k;  // 2^k
+
+//         for (int i = 0; i <= (int)s.size() - k; i++) {
+//             seen.insert(s.substr(i, k));
+//             if ((int)seen.size() == target)
+//                 return true;
+//         }
+
+//         return (int)seen.size() == target;
+//     }
+// };
+
+class Solution {
+public:
+    bool hasAllCodes(string s, int k) {
+        const int len = s.size();
+        unordered_set<string>unique;
+        for(int i=0;i<len-k+1;++i){
+            string sub = s.substr(i,k);
+            unique.insert(sub);
+        }
+        int expected = 1;
+        while(k--){expected*=2;}
+        return unique.size() == expected;
+    }
+};
