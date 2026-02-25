@@ -1,0 +1,98 @@
+1356. Sort Integers by The Number of 1 Bits
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Hint
+You are given an integer array arr. Sort the integers in the array in ascending order by the number of 1's in their binary representation and in case of two or more integers have the same number of 1's you have to sort them in ascending order.
+
+Return the array after sorting it.
+
+ 
+
+Example 1:
+
+Input: arr = [0,1,2,3,4,5,6,7,8]
+Output: [0,1,2,4,8,3,5,6,7]
+Explantion: [0] is the only integer with 0 bits.
+[1,2,4,8] all have 1 bit.
+[3,5,6] have 2 bits.
+[7] has 3 bits.
+The sorted array by bits is [0,1,2,4,8,3,5,6,7]
+Example 2:
+
+Input: arr = [1024,512,256,128,64,32,16,8,4,2,1]
+Output: [1,2,4,8,16,32,64,128,256,512,1024]
+Explantion: All integers have 1 bit in the binary representation, you should just sort them in ascending order.
+ 
+
+Constraints:
+
+1 <= arr.length <= 500
+0 <= arr[i] <= 104
+
+// class Solution {
+// public:
+//     vector<int> sortByBits(vector<int>& arr) {
+//         sort(arr.begin(), arr.end(), [](int a, int b){
+//             int bitsA = __builtin_popcount(a);
+//             int bitsB = __builtin_popcount(b);
+
+//             if(bitsA == bitsB)
+//                 return a < b;       //secondary condition
+//             return bitsA < bitsB;       //primary condition
+//         });
+//         return arr;
+//     }
+// };
+
+class Solution {
+public:
+// vector<int> sortByBits(vector<int>& arr) {
+//     vector<pair<int,int>> temp;
+
+//     // Step 1: Store (bitcount, number)
+//     for(int num : arr) {
+//         temp.push_back({__builtin_popcount(num), num});
+//     }
+
+//     // Step 2: Sort pairs (automatic lexicographical sort)
+//     sort(temp.begin(), temp.end());
+
+//     // Step 3: Extract numbers back
+//     vector<int> result;
+//     for(auto &p : temp) {
+//         result.push_back(p.second);
+//     }
+
+//     return result;
+// }
+
+
+vector<int> sortByBits(vector<int>& arr) {
+    vector<vector<int>> buckets(15);  // 0 to 14 possible bit counts
+    
+    // Step 1: Distribute into buckets
+    for(int num : arr) {
+        int bits = __builtin_popcount(num);
+        buckets[bits].push_back(num);
+    }
+
+    // Step 2: Sort each bucket
+    for(auto &bucket : buckets) {
+        sort(bucket.begin(), bucket.end());
+    }
+
+    // Step 3: Collect results
+    vector<int> result;
+    for(auto &bucket : buckets) {
+        for(int num : bucket) {
+            result.push_back(num);
+        }
+    }
+
+    return result;
+}
+
+};
