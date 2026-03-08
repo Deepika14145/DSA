@@ -1,0 +1,156 @@
+1980. Find Unique Binary String
+Solved
+Medium
+Topics
+premium lock icon
+Companies
+Hint
+Given an array of strings nums containing n unique binary strings each of length n, return a binary string of length n that does not appear in nums. If there are multiple answers, you may return any of them.
+
+ 
+
+Example 1:
+
+Input: nums = ["01","10"]
+Output: "11"
+Explanation: "11" does not appear in nums. "00" would also be correct.
+Example 2:
+
+Input: nums = ["00","01"]
+Output: "11"
+Explanation: "11" does not appear in nums. "10" would also be correct.
+Example 3:
+
+Input: nums = ["111","011","001"]
+Output: "101"
+Explanation: "101" does not appear in nums. "000", "010", "100", and "110" would also be correct.
+ 
+
+Constraints:
+
+n == nums.length
+1 <= n <= 16
+nums[i].length == n
+nums[i] is either '0' or '1'.
+All the strings of nums are unique.
+
+Cantor’s Diagonal Trick (The Elegant Solution)
+Example Walkthrough
+nums = ["111","011","001"]
+
+Look at the diagonal:
+
+nums[0][0] = 1
+nums[1][1] = 1
+nums[2][2] = 1
+
+Flip them:
+
+0 0 0
+
+Result:
+
+"000"
+
+Check array:
+
+111
+011
+001
+
+000 is not present. Done.
+
+Visualization
+nums
+
+1 1 1
+0 1 1
+0 0 1
+^ ^ ^
+| | |
+flip these bits
+
+Result:
+
+0 0 0
+
+Guaranteed different from every row.
+
+Complexity
+
+Time:
+
+O(n)
+
+Space:
+
+O(n)
+
+Which is optimal.
+
+Steps:
+
+Put all given strings into a set for fast lookup.
+
+Generate numbers from 0 to 2^n - 1.
+
+Convert each number into a binary string of length n.
+
+If that string is not in the set, return it.
+
+Example
+nums = ["01","10"]
+n = 2
+
+Possible binary strings:
+
+00
+01
+10
+11
+
+Check:
+
+00 → not in nums → return "00"
+
+// //optimal approach using Cantor’s Diagonal Trick (The Elegant Solution)
+// class Solution {
+// public:
+//     string findDifferentBinaryString(vector<string>& nums) {
+//         int n = nums.size();
+//         string ans = "";
+
+//         for(int i = 0; i<n; i++){
+//             if(nums[i][i] == '0'){
+//                 ans += '1';
+//             }else{
+//                 ans += '0';
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+class Solution{
+public:
+    string findDifferentBinaryString(vector<string>& nums){
+        int n = nums.size();
+        unordered_set<string> st(nums.begin(), nums.end());
+
+        for(int num = 0; num<(1 << n); num++){
+            string s = "";
+            int x = num;
+
+        for(int i = 0; i<n; i++){
+            s = char((x%2) + '0') + s;
+            x /= 2;
+        }
+
+        if(st.find(s) == st.end())
+            return s;
+        }
+        return "";
+    }
+};
+
+Done.
