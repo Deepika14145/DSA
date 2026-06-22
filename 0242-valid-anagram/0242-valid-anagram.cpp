@@ -22,12 +22,34 @@
 //     }
 // };
 
+// class Solution {
+// public:
+//     bool isAnagram(string s, string t) {
+//         sort(s.begin(), s.end());
+//         sort(t.begin(), t.end());
+
+//         return s == t;
+//     }
+// };
+
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
-        sort(s.begin(), s.end());
-        sort(t.begin(), t.end());
+    bool isAnagram(string s, string t){
+        if(s.size() != t.size())
+            return false;
 
-        return s == t;
+        unordered_map<char, int> mp;
+
+        for(char ch : s)
+            mp[ch]++;
+
+        for(char ch : t)
+            mp[ch]--;
+
+        for(auto &p : mp)
+            if(p.second != 0)
+                return false;
+
+        return true;
     }
 };
