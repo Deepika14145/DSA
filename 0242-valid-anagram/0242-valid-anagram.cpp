@@ -32,22 +32,45 @@
 //     }
 // };
 
+//hashmap
+// class Solution {
+// public:
+//     bool isAnagram(string s, string t){
+//         if(s.size() != t.size())
+//             return false;
+
+//         unordered_map<char, int> mp;
+
+//         for(char ch : s)
+//             mp[ch]++;
+
+//         for(char ch : t)
+//             mp[ch]--;
+
+//         for(auto &p : mp)
+//             if(p.second != 0)
+//                 return false;
+
+//         return true;
+//     }
+// };
+
+//run in single pass
 class Solution {
 public:
-    bool isAnagram(string s, string t){
+    bool isAnagram(string s, string t) {
         if(s.size() != t.size())
             return false;
 
-        unordered_map<char, int> mp;
+        int cnt[26] = {0};
 
-        for(char ch : s)
-            mp[ch]++;
+        for(int i = 0; i < s.size(); i++) {
+            cnt[s[i] - 'a']++;
+            cnt[t[i] - 'a']--;
+        }
 
-        for(char ch : t)
-            mp[ch]--;
-
-        for(auto &p : mp)
-            if(p.second != 0)
+        for(int x : cnt)
+            if(x != 0)
                 return false;
 
         return true;
