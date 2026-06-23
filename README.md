@@ -36,6 +36,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0509-fibonacci-number](https://github.com/Deepika14145/DSA/tree/master/0509-fibonacci-number) |
+| [3699-number-of-zigzag-arrays-i](https://github.com/Deepika14145/DSA/tree/master/3699-number-of-zigzag-arrays-i) |
 ## Recursion
 |  |
 | ------- |
@@ -45,4 +46,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0509-fibonacci-number](https://github.com/Deepika14145/DSA/tree/master/0509-fibonacci-number) |
+## Prefix Sum
+|  |
+| ------- |
+| [3699-number-of-zigzag-arrays-i](https://github.com/Deepika14145/DSA/tree/master/3699-number-of-zigzag-arrays-i) |
 <!---LeetCode Topics End-->
