@@ -23,6 +23,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
+| [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
 ## Two Pointers
 |  |
 | ------- |
@@ -50,4 +51,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [3699-number-of-zigzag-arrays-i](https://github.com/Deepika14145/DSA/tree/master/3699-number-of-zigzag-arrays-i) |
+## Backtracking
+|  |
+| ------- |
+| [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
 <!---LeetCode Topics End-->
