@@ -73,4 +73,20 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [3737-count-subarrays-with-majority-element-i](https://github.com/Deepika14145/DSA/tree/master/3737-count-subarrays-with-majority-element-i) |
+## Tree
+|  |
+| ------- |
+| [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
+## Depth-First Search
+|  |
+| ------- |
+| [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
+## Breadth-First Search
+|  |
+| ------- |
+| [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
+## Binary Tree
+|  |
+| ------- |
+| [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
 <!---LeetCode Topics End-->
