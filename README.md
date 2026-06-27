@@ -6,6 +6,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
 | [1189-maximum-number-of-balloons](https://github.com/Deepika14145/DSA/tree/master/1189-maximum-number-of-balloons) |
+| [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/Deepika14145/DSA/tree/master/3020-find-the-maximum-number-of-elements-in-subset) |
 | [3737-count-subarrays-with-majority-element-i](https://github.com/Deepika14145/DSA/tree/master/3737-count-subarrays-with-majority-element-i) |
 ## String
 |  |
@@ -26,6 +27,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
 | [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
+| [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/Deepika14145/DSA/tree/master/3020-find-the-maximum-number-of-elements-in-subset) |
 | [3737-count-subarrays-with-majority-element-i](https://github.com/Deepika14145/DSA/tree/master/3737-count-subarrays-with-majority-element-i) |
 ## Two Pointers
 |  |
@@ -101,4 +103,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0099-recover-binary-search-tree](https://github.com/Deepika14145/DSA/tree/master/0099-recover-binary-search-tree) |
 | [1373-maximum-sum-bst-in-binary-tree](https://github.com/Deepika14145/DSA/tree/master/1373-maximum-sum-bst-in-binary-tree) |
+## Enumeration
+|  |
+| ------- |
+| [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/Deepika14145/DSA/tree/master/3020-find-the-maximum-number-of-elements-in-subset) |
 <!---LeetCode Topics End-->
