@@ -17,6 +17,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
+| [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/Deepika14145/DSA/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 ## Counting
 |  |
 | ------- |
@@ -27,6 +28,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
 | [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
+| [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/Deepika14145/DSA/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 | [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/Deepika14145/DSA/tree/master/3020-find-the-maximum-number-of-elements-in-subset) |
 | [3737-count-subarrays-with-majority-element-i](https://github.com/Deepika14145/DSA/tree/master/3737-count-subarrays-with-majority-element-i) |
 ## Two Pointers
@@ -107,4 +109,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/Deepika14145/DSA/tree/master/3020-find-the-maximum-number-of-elements-in-subset) |
+## Greedy
+|  |
+| ------- |
+| [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/Deepika14145/DSA/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 <!---LeetCode Topics End-->
