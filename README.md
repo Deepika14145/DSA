@@ -96,10 +96,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0099-recover-binary-search-tree](https://github.com/Deepika14145/DSA/tree/master/0099-recover-binary-search-tree) |
 | [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
 | [1373-maximum-sum-bst-in-binary-tree](https://github.com/Deepika14145/DSA/tree/master/1373-maximum-sum-bst-in-binary-tree) |
+| [2492-minimum-score-of-a-path-between-two-cities](https://github.com/Deepika14145/DSA/tree/master/2492-minimum-score-of-a-path-between-two-cities) |
 ## Breadth-First Search
 |  |
 | ------- |
 | [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
+| [2492-minimum-score-of-a-path-between-two-cities](https://github.com/Deepika14145/DSA/tree/master/2492-minimum-score-of-a-path-between-two-cities) |
 | [2812-find-the-safest-path-in-a-grid](https://github.com/Deepika14145/DSA/tree/master/2812-find-the-safest-path-in-a-grid) |
 | [3286-find-a-safe-walk-through-a-grid](https://github.com/Deepika14145/DSA/tree/master/3286-find-a-safe-walk-through-a-grid) |
 ## Binary Tree
@@ -129,6 +131,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Union-Find
 |  |
 | ------- |
+| [2492-minimum-score-of-a-path-between-two-cities](https://github.com/Deepika14145/DSA/tree/master/2492-minimum-score-of-a-path-between-two-cities) |
 | [2812-find-the-safest-path-in-a-grid](https://github.com/Deepika14145/DSA/tree/master/2812-find-the-safest-path-in-a-grid) |
 ## Heap (Priority Queue)
 |  |
@@ -143,6 +146,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Graph Theory
 |  |
 | ------- |
+| [2492-minimum-score-of-a-path-between-two-cities](https://github.com/Deepika14145/DSA/tree/master/2492-minimum-score-of-a-path-between-two-cities) |
 | [3286-find-a-safe-walk-through-a-grid](https://github.com/Deepika14145/DSA/tree/master/3286-find-a-safe-walk-through-a-grid) |
 ## Shortest Path
 |  |
