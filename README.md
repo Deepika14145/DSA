@@ -4,6 +4,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Hash Table
 |  |
 | ------- |
+| [0128-longest-consecutive-sequence](https://github.com/Deepika14145/DSA/tree/master/0128-longest-consecutive-sequence) |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
 | [1189-maximum-number-of-balloons](https://github.com/Deepika14145/DSA/tree/master/1189-maximum-number-of-balloons) |
 | [1358-number-of-substrings-containing-all-three-characters](https://github.com/Deepika14145/DSA/tree/master/1358-number-of-substrings-containing-all-three-characters) |
@@ -35,6 +36,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
 | [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
 | [0088-merge-sorted-array](https://github.com/Deepika14145/DSA/tree/master/0088-merge-sorted-array) |
+| [0128-longest-consecutive-sequence](https://github.com/Deepika14145/DSA/tree/master/0128-longest-consecutive-sequence) |
 | [1288-remove-covered-intervals](https://github.com/Deepika14145/DSA/tree/master/1288-remove-covered-intervals) |
 | [1301-number-of-paths-with-max-score](https://github.com/Deepika14145/DSA/tree/master/1301-number-of-paths-with-max-score) |
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/Deepika14145/DSA/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
@@ -142,6 +144,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Union-Find
 |  |
 | ------- |
+| [0128-longest-consecutive-sequence](https://github.com/Deepika14145/DSA/tree/master/0128-longest-consecutive-sequence) |
 | [2492-minimum-score-of-a-path-between-two-cities](https://github.com/Deepika14145/DSA/tree/master/2492-minimum-score-of-a-path-between-two-cities) |
 | [2812-find-the-safest-path-in-a-grid](https://github.com/Deepika14145/DSA/tree/master/2812-find-the-safest-path-in-a-grid) |
 ## Heap (Priority Queue)
