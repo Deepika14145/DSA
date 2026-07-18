@@ -17,6 +17,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## String
 |  |
 | ------- |
+| [0227-basic-calculator-ii](https://github.com/Deepika14145/DSA/tree/master/0227-basic-calculator-ii) |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
 | [1189-maximum-number-of-balloons](https://github.com/Deepika14145/DSA/tree/master/1189-maximum-number-of-balloons) |
 | [1358-number-of-substrings-containing-all-three-characters](https://github.com/Deepika14145/DSA/tree/master/1358-number-of-substrings-containing-all-three-characters) |
@@ -74,6 +75,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Math
 |  |
 | ------- |
+| [0227-basic-calculator-ii](https://github.com/Deepika14145/DSA/tree/master/0227-basic-calculator-ii) |
 | [0326-power-of-three](https://github.com/Deepika14145/DSA/tree/master/0326-power-of-three) |
 | [0509-fibonacci-number](https://github.com/Deepika14145/DSA/tree/master/0509-fibonacci-number) |
 | [1979-find-greatest-common-divisor-of-array](https://github.com/Deepika14145/DSA/tree/master/1979-find-greatest-common-divisor-of-array) |
@@ -246,6 +248,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Stack
 |  |
 | ------- |
+| [0227-basic-calculator-ii](https://github.com/Deepika14145/DSA/tree/master/0227-basic-calculator-ii) |
 | [0234-palindrome-linked-list](https://github.com/Deepika14145/DSA/tree/master/0234-palindrome-linked-list) |
 ## Simulation
 |  |
