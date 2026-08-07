@@ -271,6 +271,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0177-nth-highest-salary](https://github.com/Deepika14145/DSA/tree/master/0177-nth-highest-salary) |
 | [0183-customers-who-never-order](https://github.com/Deepika14145/DSA/tree/master/0183-customers-who-never-order) |
+| [0197-rising-temperature](https://github.com/Deepika14145/DSA/tree/master/0197-rising-temperature) |
 | [0595-big-countries](https://github.com/Deepika14145/DSA/tree/master/0595-big-countries) |
 | [0607-sales-person](https://github.com/Deepika14145/DSA/tree/master/0607-sales-person) |
 | [0619-biggest-single-number](https://github.com/Deepika14145/DSA/tree/master/0619-biggest-single-number) |
