@@ -1,99 +1,105 @@
-constexpr uint8_t DIV_GCD[10][10] = {
-    {},
-    {1},
-    {2, 1},
-    {3, 1, 1},
-    {4, 1, 2, 1},
-    {5, 1, 1, 1, 1},
-    {6, 1, 2, 3, 2, 1},
-    {7, 1, 1, 1, 1, 1, 1},
-    {8, 1, 2, 1, 4, 1, 2, 1},
-    {9, 1, 1, 3, 1, 1, 3, 1, 1},
-};
-
-constexpr int MAX_SIZE = 200001;
-
-long long remainingFactor[MAX_SIZE];
-char answerBuffer[MAX_SIZE + 1];
-
 class Solution {
 public:
-    string smallestNumber(string num, long long t) {
+    string smallestNumber(string number, long long target) {
 
-        long long checkFactor = t >> __builtin_ctzll(t);
+        long long tempTarget = target;
 
-        for (int prime : {3, 5, 7}) {
-            while (checkFactor % prime == 0)
-                checkFactor /= prime;
+        for (int factor = 2; factor <= 9; factor++) {
+            while (tempTarget % factor == 0) {
+                tempTarget /= factor;
+            }
         }
 
-        if (checkFactor > 1)
+        if (tempTarget != 1) {
             return "-1";
+        }
 
-        int length = num.size();
+        int length = number.size();
+        vector<char> result(number.begin(), number.end());
 
-        remainingFactor[0] = t;
-        remainingFactor[length] = 0;
+        vector<long long> remainingTarget(length + 1, 0);
+        remainingTarget[0] = target;
 
-        int firstZero = length - 1;
+        int firstZeroIndex = length - 1;
 
-        for (int i = 0; i < length; i++) {
+        for (int index = 0; index < length; index++) {
 
-            if (num[i] == '0') {
-                firstZero = i;
+            int currentDigit = result[index] - '0';
+
+            if (currentDigit == 0) {
+                firstZeroIndex = index;
                 break;
             }
 
-            int digit = num[i] - '0';
-
-            remainingFactor[i + 1] =
-                remainingFactor[i] /
-                DIV_GCD[digit][remainingFactor[i] % digit];
+            long long commonFactor = gcd(remainingTarget[index], (long long)currentDigit);
+            remainingTarget[index + 1] = remainingTarget[index] / commonFactor;
         }
 
-        if (remainingFactor[length] == 1)
-            return num;
+        if (remainingTarget[length] == 1) {
+            return number;
+        }
 
-        for (int i = firstZero; i >= 0; i--) {
+        for (int index = firstZeroIndex; index >= 0; index--) {
 
-            while (++num[i] <= '9') {
+            int originalDigit = result[index] - '0';
 
-                int digit = num[i] - '0';
+            for (int candidateDigit = originalDigit + 1; candidateDigit <= 9; candidateDigit++) {
 
-                long long currentNeed =
-                    remainingFactor[i] /
-                    DIV_GCD[digit][remainingFactor[i] % digit];
+                result[index] = char('0' + candidateDigit);
 
-                int largestDigit = 9;
+                long long requiredValue = remainingTarget[index];
+                requiredValue /= gcd(requiredValue, (long long)candidateDigit);
 
-                for (int j = length - 1; j > i; j--) {
+                vector<char> suffixDigits;
 
-                    while (currentNeed % largestDigit != 0)
-                        largestDigit--;
+                for (int pos = index + 1; pos < length; pos++) {
 
-                    currentNeed /= largestDigit;
-                    num[j] = largestDigit + '0';
+                    int bestDigit = 9;
+
+                    while (bestDigit > 1 && requiredValue % bestDigit != 0) {
+                        bestDigit--;
+                    }
+
+                    if (requiredValue % bestDigit == 0) {
+                        requiredValue /= bestDigit;
+                    }
+
+                    suffixDigits.push_back(char('0' + bestDigit));
                 }
 
-                if (currentNeed == 1)
-                    return num;
+                if (requiredValue == 1) {
+
+                    reverse(suffixDigits.begin(), suffixDigits.end());
+
+                    for (int pos = index + 1; pos < length; pos++) {
+                        result[pos] = suffixDigits[pos - index - 1];
+                    }
+
+                    return string(result.begin(), result.end());
+                }
+            }
+
+            result[index] = number[index];
+        }
+
+        vector<char> factorDigits;
+        long long remainingValue = target;
+
+        for (int digit = 9; digit >= 2; digit--) {
+            while (remainingValue % digit == 0) {
+                factorDigits.push_back(char('0' + digit));
+                remainingValue /= digit;
             }
         }
 
-        int bufferIndex = MAX_SIZE + 1;
+        int finalLength = max(length + 1, (int)factorDigits.size());
 
-        for (int digit = 9; digit > 1; digit--) {
-
-            while (t % digit == 0) {
-                answerBuffer[--bufferIndex] = digit + '0';
-                t /= digit;
-            }
+        while ((int)factorDigits.size() < finalLength) {
+            factorDigits.push_back('1');
         }
 
-        while (MAX_SIZE - bufferIndex < length)
-            answerBuffer[--bufferIndex] = '1';
+        reverse(factorDigits.begin(), factorDigits.end());
 
-        return string(answerBuffer + bufferIndex,
-                      MAX_SIZE + 1 - bufferIndex);
+        return string(factorDigits.begin(), factorDigits.end());
     }
 };
