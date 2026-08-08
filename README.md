@@ -273,6 +273,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Database
 |  |
 | ------- |
+| [0176-second-highest-salary](https://github.com/Deepika14145/DSA/tree/master/0176-second-highest-salary) |
 | [0177-nth-highest-salary](https://github.com/Deepika14145/DSA/tree/master/0177-nth-highest-salary) |
 | [0183-customers-who-never-order](https://github.com/Deepika14145/DSA/tree/master/0183-customers-who-never-order) |
 | [0197-rising-temperature](https://github.com/Deepika14145/DSA/tree/master/0197-rising-temperature) |
