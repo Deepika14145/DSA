@@ -72,6 +72,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0347-top-k-frequent-elements](https://github.com/Deepika14145/DSA/tree/master/0347-top-k-frequent-elements) |
 | [0560-subarray-sum-equals-k](https://github.com/Deepika14145/DSA/tree/master/0560-subarray-sum-equals-k) |
 | [0682-baseball-game](https://github.com/Deepika14145/DSA/tree/master/0682-baseball-game) |
+| [1011-capacity-to-ship-packages-within-d-days](https://github.com/Deepika14145/DSA/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1140-stone-game-ii](https://github.com/Deepika14145/DSA/tree/master/1140-stone-game-ii) |
 | [1260-shift-2d-grid](https://github.com/Deepika14145/DSA/tree/master/1260-shift-2d-grid) |
 | [1288-remove-covered-intervals](https://github.com/Deepika14145/DSA/tree/master/1288-remove-covered-intervals) |
@@ -211,6 +212,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0099-recover-binary-search-tree](https://github.com/Deepika14145/DSA/tree/master/0099-recover-binary-search-tree) |
+| [1011-capacity-to-ship-packages-within-d-days](https://github.com/Deepika14145/DSA/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1373-maximum-sum-bst-in-binary-tree](https://github.com/Deepika14145/DSA/tree/master/1373-maximum-sum-bst-in-binary-tree) |
 | [2812-find-the-safest-path-in-a-grid](https://github.com/Deepika14145/DSA/tree/master/2812-find-the-safest-path-in-a-grid) |
 | [3312-sorted-gcd-pair-queries](https://github.com/Deepika14145/DSA/tree/master/3312-sorted-gcd-pair-queries) |
