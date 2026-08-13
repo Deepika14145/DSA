@@ -25,6 +25,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0020-valid-parentheses](https://github.com/Deepika14145/DSA/tree/master/0020-valid-parentheses) |
 | [0071-simplify-path](https://github.com/Deepika14145/DSA/tree/master/0071-simplify-path) |
+| [0079-word-search](https://github.com/Deepika14145/DSA/tree/master/0079-word-search) |
 | [0227-basic-calculator-ii](https://github.com/Deepika14145/DSA/tree/master/0227-basic-calculator-ii) |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
 | [0316-remove-duplicate-letters](https://github.com/Deepika14145/DSA/tree/master/0316-remove-duplicate-letters) |
@@ -73,6 +74,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0011-container-with-most-water](https://github.com/Deepika14145/DSA/tree/master/0011-container-with-most-water) |
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
 | [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
+| [0079-word-search](https://github.com/Deepika14145/DSA/tree/master/0079-word-search) |
 | [0088-merge-sorted-array](https://github.com/Deepika14145/DSA/tree/master/0088-merge-sorted-array) |
 | [0128-longest-consecutive-sequence](https://github.com/Deepika14145/DSA/tree/master/0128-longest-consecutive-sequence) |
 | [0239-sliding-window-maximum](https://github.com/Deepika14145/DSA/tree/master/0239-sliding-window-maximum) |
@@ -173,6 +175,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
+| [0079-word-search](https://github.com/Deepika14145/DSA/tree/master/0079-word-search) |
 | [3348-smallest-divisible-digit-product-ii](https://github.com/Deepika14145/DSA/tree/master/3348-smallest-divisible-digit-product-ii) |
 ## Divide and Conquer
 |  |
@@ -200,6 +203,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Depth-First Search
 |  |
 | ------- |
+| [0079-word-search](https://github.com/Deepika14145/DSA/tree/master/0079-word-search) |
 | [0094-binary-tree-inorder-traversal](https://github.com/Deepika14145/DSA/tree/master/0094-binary-tree-inorder-traversal) |
 | [0099-recover-binary-search-tree](https://github.com/Deepika14145/DSA/tree/master/0099-recover-binary-search-tree) |
 | [0101-symmetric-tree](https://github.com/Deepika14145/DSA/tree/master/0101-symmetric-tree) |
@@ -278,6 +282,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Matrix
 |  |
 | ------- |
+| [0079-word-search](https://github.com/Deepika14145/DSA/tree/master/0079-word-search) |
 | [1260-shift-2d-grid](https://github.com/Deepika14145/DSA/tree/master/1260-shift-2d-grid) |
 | [1301-number-of-paths-with-max-score](https://github.com/Deepika14145/DSA/tree/master/1301-number-of-paths-with-max-score) |
 | [2812-find-the-safest-path-in-a-grid](https://github.com/Deepika14145/DSA/tree/master/2812-find-the-safest-path-in-a-grid) |
