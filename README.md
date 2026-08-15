@@ -10,6 +10,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0347-top-k-frequent-elements](https://github.com/Deepika14145/DSA/tree/master/0347-top-k-frequent-elements) |
 | [0560-subarray-sum-equals-k](https://github.com/Deepika14145/DSA/tree/master/0560-subarray-sum-equals-k) |
 | [0692-top-k-frequent-words](https://github.com/Deepika14145/DSA/tree/master/0692-top-k-frequent-words) |
+| [0904-fruit-into-baskets](https://github.com/Deepika14145/DSA/tree/master/0904-fruit-into-baskets) |
 | [1189-maximum-number-of-balloons](https://github.com/Deepika14145/DSA/tree/master/1189-maximum-number-of-balloons) |
 | [1331-rank-transform-of-an-array](https://github.com/Deepika14145/DSA/tree/master/1331-rank-transform-of-an-array) |
 | [1358-number-of-substrings-containing-all-three-characters](https://github.com/Deepika14145/DSA/tree/master/1358-number-of-substrings-containing-all-three-characters) |
@@ -86,6 +87,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0560-subarray-sum-equals-k](https://github.com/Deepika14145/DSA/tree/master/0560-subarray-sum-equals-k) |
 | [0682-baseball-game](https://github.com/Deepika14145/DSA/tree/master/0682-baseball-game) |
 | [0692-top-k-frequent-words](https://github.com/Deepika14145/DSA/tree/master/0692-top-k-frequent-words) |
+| [0904-fruit-into-baskets](https://github.com/Deepika14145/DSA/tree/master/0904-fruit-into-baskets) |
 | [1011-capacity-to-ship-packages-within-d-days](https://github.com/Deepika14145/DSA/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1140-stone-game-ii](https://github.com/Deepika14145/DSA/tree/master/1140-stone-game-ii) |
 | [1260-shift-2d-grid](https://github.com/Deepika14145/DSA/tree/master/1260-shift-2d-grid) |
@@ -266,6 +268,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0239-sliding-window-maximum](https://github.com/Deepika14145/DSA/tree/master/0239-sliding-window-maximum) |
+| [0904-fruit-into-baskets](https://github.com/Deepika14145/DSA/tree/master/0904-fruit-into-baskets) |
 | [1358-number-of-substrings-containing-all-three-characters](https://github.com/Deepika14145/DSA/tree/master/1358-number-of-substrings-containing-all-three-characters) |
 | [3090-maximum-length-substring-with-two-occurrences](https://github.com/Deepika14145/DSA/tree/master/3090-maximum-length-substring-with-two-occurrences) |
 ## Union-Find
