@@ -337,6 +337,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0627-swap-sex-of-employees](https://github.com/Deepika14145/DSA/tree/master/0627-swap-sex-of-employees) |
 | [1050-actors-and-directors-who-cooperated-at-least-three-times](https://github.com/Deepika14145/DSA/tree/master/1050-actors-and-directors-who-cooperated-at-least-three-times) |
 | [1070-product-sales-analysis-iii](https://github.com/Deepika14145/DSA/tree/master/1070-product-sales-analysis-iii) |
+| [1075-project-employees-i](https://github.com/Deepika14145/DSA/tree/master/1075-project-employees-i) |
 | [1084-sales-analysis-iii](https://github.com/Deepika14145/DSA/tree/master/1084-sales-analysis-iii) |
 | [1321-restaurant-growth](https://github.com/Deepika14145/DSA/tree/master/1321-restaurant-growth) |
 | [1378-replace-employee-id-with-the-unique-identifier](https://github.com/Deepika14145/DSA/tree/master/1378-replace-employee-id-with-the-unique-identifier) |
