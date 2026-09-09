@@ -139,6 +139,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0326-power-of-three](https://github.com/Deepika14145/DSA/tree/master/0326-power-of-three) |
 | [0509-fibonacci-number](https://github.com/Deepika14145/DSA/tree/master/0509-fibonacci-number) |
 | [1140-stone-game-ii](https://github.com/Deepika14145/DSA/tree/master/1140-stone-game-ii) |
+| [1185-day-of-the-week](https://github.com/Deepika14145/DSA/tree/master/1185-day-of-the-week) |
 | [1414-find-the-minimum-number-of-fibonacci-numbers-whose-sum-is-k](https://github.com/Deepika14145/DSA/tree/master/1414-find-the-minimum-number-of-fibonacci-numbers-whose-sum-is-k) |
 | [1510-stone-game-iv](https://github.com/Deepika14145/DSA/tree/master/1510-stone-game-iv) |
 | [1563-stone-game-v](https://github.com/Deepika14145/DSA/tree/master/1563-stone-game-v) |
