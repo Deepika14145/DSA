@@ -4,6 +4,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Hash Table
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/Deepika14145/DSA/tree/master/0001-two-sum) |
 | [0128-longest-consecutive-sequence](https://github.com/Deepika14145/DSA/tree/master/0128-longest-consecutive-sequence) |
 | [0146-lru-cache](https://github.com/Deepika14145/DSA/tree/master/0146-lru-cache) |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
@@ -79,6 +80,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Array
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/Deepika14145/DSA/tree/master/0001-two-sum) |
 | [0011-container-with-most-water](https://github.com/Deepika14145/DSA/tree/master/0011-container-with-most-water) |
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
 | [0039-combination-sum](https://github.com/Deepika14145/DSA/tree/master/0039-combination-sum) |
