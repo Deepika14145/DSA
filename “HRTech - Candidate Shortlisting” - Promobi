@@ -1,0 +1,26 @@
+vector<string> getQualifiedCandiidates(vector<tuple<string, int, int>>& candidates){
+	vector<string> ans;
+
+	for(auto &[name, tech, aptitude] : candidates){
+		if(tech >= 70 && aptitude >= 60){
+			ans.push_back(name);
+		}
+	}
+	return ans;
+}
+
+int main() {
+    vector<tuple<string, int, int>> candidates = {
+        {"Alice", 75, 65},
+        {"Bob", 65, 70},
+        {"Charlie", 80, 90}
+    };
+
+    vector<string> ans = getQualifiedCandidates(candidates);
+
+    for (string name: ans)
+        cout << name << " ";
+
+    return 0;
+}
+
