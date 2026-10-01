@@ -355,6 +355,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1321-restaurant-growth](https://github.com/Deepika14145/DSA/tree/master/1321-restaurant-growth) |
 | [1378-replace-employee-id-with-the-unique-identifier](https://github.com/Deepika14145/DSA/tree/master/1378-replace-employee-id-with-the-unique-identifier) |
 | [1693-daily-leads-and-partners](https://github.com/Deepika14145/DSA/tree/master/1693-daily-leads-and-partners) |
+| [1978-employees-whose-manager-left-the-company](https://github.com/Deepika14145/DSA/tree/master/1978-employees-whose-manager-left-the-company) |
 | [3465-find-products-with-valid-serial-numbers](https://github.com/Deepika14145/DSA/tree/master/3465-find-products-with-valid-serial-numbers) |
 | [3586-find-covid-recovery-patients](https://github.com/Deepika14145/DSA/tree/master/3586-find-covid-recovery-patients) |
 | [3611-find-overbooked-employees](https://github.com/Deepika14145/DSA/tree/master/3611-find-overbooked-employees) |
