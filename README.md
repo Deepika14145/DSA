@@ -60,6 +60,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0268-missing-number](https://github.com/Deepika14145/DSA/tree/master/0268-missing-number) |
 | [0347-top-k-frequent-elements](https://github.com/Deepika14145/DSA/tree/master/0347-top-k-frequent-elements) |
 | [0452-minimum-number-of-arrows-to-burst-balloons](https://github.com/Deepika14145/DSA/tree/master/0452-minimum-number-of-arrows-to-burst-balloons) |
+| [0506-relative-ranks](https://github.com/Deepika14145/DSA/tree/master/0506-relative-ranks) |
 | [0645-set-mismatch](https://github.com/Deepika14145/DSA/tree/master/0645-set-mismatch) |
 | [0692-top-k-frequent-words](https://github.com/Deepika14145/DSA/tree/master/0692-top-k-frequent-words) |
 | [1288-remove-covered-intervals](https://github.com/Deepika14145/DSA/tree/master/1288-remove-covered-intervals) |
@@ -95,6 +96,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0268-missing-number](https://github.com/Deepika14145/DSA/tree/master/0268-missing-number) |
 | [0347-top-k-frequent-elements](https://github.com/Deepika14145/DSA/tree/master/0347-top-k-frequent-elements) |
 | [0452-minimum-number-of-arrows-to-burst-balloons](https://github.com/Deepika14145/DSA/tree/master/0452-minimum-number-of-arrows-to-burst-balloons) |
+| [0506-relative-ranks](https://github.com/Deepika14145/DSA/tree/master/0506-relative-ranks) |
 | [0560-subarray-sum-equals-k](https://github.com/Deepika14145/DSA/tree/master/0560-subarray-sum-equals-k) |
 | [0643-maximum-average-subarray-i](https://github.com/Deepika14145/DSA/tree/master/0643-maximum-average-subarray-i) |
 | [0645-set-mismatch](https://github.com/Deepika14145/DSA/tree/master/0645-set-mismatch) |
@@ -320,6 +322,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0239-sliding-window-maximum](https://github.com/Deepika14145/DSA/tree/master/0239-sliding-window-maximum) |
 | [0347-top-k-frequent-elements](https://github.com/Deepika14145/DSA/tree/master/0347-top-k-frequent-elements) |
+| [0506-relative-ranks](https://github.com/Deepika14145/DSA/tree/master/0506-relative-ranks) |
 | [0692-top-k-frequent-words](https://github.com/Deepika14145/DSA/tree/master/0692-top-k-frequent-words) |
 | [1464-maximum-product-of-two-elements-in-an-array](https://github.com/Deepika14145/DSA/tree/master/1464-maximum-product-of-two-elements-in-an-array) |
 | [2812-find-the-safest-path-in-a-grid](https://github.com/Deepika14145/DSA/tree/master/2812-find-the-safest-path-in-a-grid) |
