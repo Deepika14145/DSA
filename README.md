@@ -34,6 +34,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0020-valid-parentheses](https://github.com/Deepika14145/DSA/tree/master/0020-valid-parentheses) |
 | [0071-simplify-path](https://github.com/Deepika14145/DSA/tree/master/0071-simplify-path) |
 | [0079-word-search](https://github.com/Deepika14145/DSA/tree/master/0079-word-search) |
+| [0125-valid-palindrome](https://github.com/Deepika14145/DSA/tree/master/0125-valid-palindrome) |
 | [0227-basic-calculator-ii](https://github.com/Deepika14145/DSA/tree/master/0227-basic-calculator-ii) |
 | [0242-valid-anagram](https://github.com/Deepika14145/DSA/tree/master/0242-valid-anagram) |
 | [0316-remove-duplicate-letters](https://github.com/Deepika14145/DSA/tree/master/0316-remove-duplicate-letters) |
@@ -145,6 +146,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0031-next-permutation](https://github.com/Deepika14145/DSA/tree/master/0031-next-permutation) |
 | [0082-remove-duplicates-from-sorted-list-ii](https://github.com/Deepika14145/DSA/tree/master/0082-remove-duplicates-from-sorted-list-ii) |
 | [0088-merge-sorted-array](https://github.com/Deepika14145/DSA/tree/master/0088-merge-sorted-array) |
+| [0125-valid-palindrome](https://github.com/Deepika14145/DSA/tree/master/0125-valid-palindrome) |
 | [0234-palindrome-linked-list](https://github.com/Deepika14145/DSA/tree/master/0234-palindrome-linked-list) |
 | [0283-move-zeroes](https://github.com/Deepika14145/DSA/tree/master/0283-move-zeroes) |
 | [1385-find-the-distance-value-between-two-arrays](https://github.com/Deepika14145/DSA/tree/master/1385-find-the-distance-value-between-two-arrays) |
