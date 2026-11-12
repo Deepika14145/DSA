@@ -1,4 +1,3 @@
-
 SELECT
     s.user_id,
     ROUND(
